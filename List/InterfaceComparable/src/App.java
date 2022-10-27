@@ -35,5 +35,9 @@ public class App {
         Collections.sort(meusGatos, new ComparatorCor());
         System.out.println("Ordem de Cor");
         System.out.println(meusGatos);
+
+        meusGatos.sort(new ComparatorNomeCorIdade());
+        System.out.println("Ordem Nome/Cor/Idade");
+        System.out.println(meusGatos);
     }
 }
