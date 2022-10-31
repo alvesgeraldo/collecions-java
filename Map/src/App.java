@@ -1,8 +1,11 @@
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.Map.Entry;
 
 public class App {
@@ -52,5 +55,58 @@ public class App {
           System.out.println("Modelo de melhor consumo: " + modeloMelhorConsumo + " - " + melhorConsumo);
         }
       }
+
+      Double maiorConsumo = Collections.min(carrosPopulares.values());
+      String modeloMaiorConsumo = "";
+
+      for (Entry<String,Double> entry : entrySet) {
+        if (entry.getValue().equals(maiorConsumo)) {
+          modeloMaiorConsumo = entry.getKey();
+          System.out.println("Modelo de maior consumo: " + modeloMaiorConsumo + " - " + maiorConsumo);
+        }
+      }
+
+      Iterator<Double> iterator = carrosPopulares.values().iterator();
+      Double soma = 0.0;
+
+      while (iterator.hasNext()) {
+        soma += iterator.next();
+      }
+
+      System.out.println("A soma dos consumos é: " + soma);
+
+      System.out.println("A média dos consumos é de: " + soma/carrosPopulares.size());
+
+      System.out.println(carrosPopulares);
+      Iterator<Double> iterator2 = carrosPopulares.values().iterator();
+
+      while (iterator2.hasNext()) {
+        if (iterator2.next() == 15.6) {
+          iterator2.remove();
+        }
+      }
+
+      System.out.println("Remova os com consumo igual a 15.6: ");
+      System.out.println(carrosPopulares);
+
+      System.out.println("Exibir na ordem em que foram informados:");
+      Map<String, Double> carrosPopulares1 = new LinkedHashMap<>(){{
+        put("gol", 14.4);
+        put("uno", 15.6);
+        put("mobi", 16.1);
+        put("hb20", 14.5);
+        put("kwid", 15.6);
+      }};
+
+      System.out.println(carrosPopulares1);
+
+      System.out.println("Exibir na ordem dos modelos:");
+      Map<String, Double> carrosPopulares2 = new TreeMap<>(carrosPopulares1);
+      System.out.println(carrosPopulares2);
+
+      System.out.println("Limpe o dicionário de carros");
+      carrosPopulares.clear();
+
+      System.out.println("Verifique se a lista está vazia " + carrosPopulares.isEmpty());
     }
 }
